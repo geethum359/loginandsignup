@@ -3,8 +3,9 @@ from django.contrib.auth.forms import UserCreationForm
 from app1.forms import CustomUserCreationForm
 from app1.models import CustomUser
 from django.http import HttpResponse
+from app1.forms import employeeForm
 from django.contrib.auth import authenticate,login,logout
-# from app1.models import employee
+from app1.models import employee
 # Create your views here.
 def base(request):
     return render(request,'base.html')
@@ -33,20 +34,37 @@ def user_login1(request):
 def user_logout1(request):
     logout(request)
     return user_login1(request)
-# def view(request):
-#     v=employee.objects.all()
-#     return render(request,'view.html',{"s":v})
-# def  addform(request):
-#     if(request.method=='POST'):
-#         eid=request.POST['eid']
-#         n=request.POST['en']
-#         p=request.POST['ep']
-#         # g1=request.POST['g1']
-#         # g2=request.POST['g2']
-#         cn=request.POST['cn']
-#         d=request.POST['d']
-#         s=request.POST['s']
-#         o=employee.objects.create(emp_id=eid,emp_name=n, place=p,company_name=cn,designation=d, salary=s)
-#         o.save()
-#         return view(request)
-#     return render(request,'addform.html')
+def view(request):
+    v=employee.objects.all()
+    return render(request,'view.html',{"s":v})
+def  addform(request):
+    form=employeeForm()
+    if request.method=='POST':
+        form=employeeForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return view(request)
+    return render(request,'addform.html',{'form':form})
+def delete_emp(request,p):
+    s=employee.objects.get(pk=p)
+    s.delete()
+    return view(request)
+def edit_emp(request,p):
+    d=employee.objects.get(pk=p)
+    form=employeeForm(instance=d)
+    if(request.method=='POST'):
+        form=employeeForm(request.POST,instance=d)
+        if(form.is_valid()):
+            form.save()
+            return view(request)
+    return render(request,'addform.html',{'form':form})
+def data(request,p):
+    k=employee.objects.get(pk=p)
+    form=employeeForm(instance=d)
+    if(request.method=='POST'):
+        form=employeeForm(request.POST,instance=d)
+        if(form.is_valid()):
+            form.save()
+            return data(request)
+    return render(request,'view_data.html')
+

@@ -15,3 +15,8 @@ form{
 }
 a{background: -webkit-linear-gradient(rgb(255, 187, 0),#00bbff);}
 li{padding-left: 5px;}
+.sfrm{
+    padding: 20px;
+}
+.sfrm,label{padding-left: 20px;}
+table ,th,td{border: 2px solid black;}

@@ -25,7 +25,9 @@ urlpatterns = [
     path('logout1/',views.user_logout1,name='logout1'),
     path('signup/',views.signup1,name='signup1'),
     path('admin/', admin.site.urls),
-    # path('view/',views.view,name='view'),
-    # path('addform/',views.addform,name='addform'),
+    path('view/',views.view,name='view'),
+    path('addform/',views.addform,name='addform'),
+    path('delete/<int:p>',views.delete_emp,name='delete_emp'),
+    path('edit/<int:p>',views.edit_emp,name='edit_emp'),
 ]
 

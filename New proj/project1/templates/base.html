@@ -18,18 +18,18 @@
     </li>
     {% if user.is_authenticated %}
     <li class="nav-item">
-      <a class="nav-link active" href="{% url 'password_change' %}">change</a>
+      <a class="nav-link active" href="{% url 'password_change' %}">Change password</a>
     </li>
     <li class="nav-item">
       <a class="nav-link active" href="{% url 'logout1' %}">Logout</a>
     </li>
-   
     <li class="nav-item">
-      <a class="nav-link active" href="{% url 'view' %}">View</a>
+      <a class="nav-link active" href="{% url 'view' %}">view_from</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link active" href="{% url 'addform' %}">add</a>
+      <a class="nav-link active" href="{% url 'addform' %}">Add details</a>
     </li>
+    
     {% else %}
     <li class="nav-item">
       <a class="nav-link active" href="{% url 'signup1' %}">signup</a>
